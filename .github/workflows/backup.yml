@@ -24,7 +24,7 @@ jobs:
           script: |
             set -euo pipefail
             mkdir -p /home/bitnami/backups/
-            mysqldump -h 127.0.0.1 -u${{secrets.DATABASE_USER}} -p${{secrets.DATABASE_PASSWORD}} ${{secrets.DATABASE_NAME}} > /home/bitnami/backups/backup.sql
+            mysqldump -h 127.0.0.1 -ubn_wordpress -p${{secrets.DATABASE_PASSWORD}} bitnami_wordpress > /home/bitnami/backups/backup.sql
             # Sanity check: dump should be non-empty
             if [ ! -s /home/bitnami/backups/backup.sql ]; then
               echo "ERROR: backup.sql is empty" >&2
